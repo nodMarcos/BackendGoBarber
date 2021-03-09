@@ -2,6 +2,7 @@ import User from '../infra/typeorm/entities/User';
 import {sign} from 'jsonwebtoken';
 import {compare} from 'bcryptjs';
 import authConfig from '@config/auth';
+import {injectable, inject} from 'tsyringe';
 
 import IUsersRepository from '../repositories/IUsersRepository';
 
@@ -17,10 +18,12 @@ interface Response{
     user:User;
     token: string;
 }
-
+@injectable()
 class AuthenticateUserService{
 
-    constructor(private usersRepository: IUsersRepository) {
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository) {
     }
 
     public async execute({email, password}: Request):Promise<Response>{
