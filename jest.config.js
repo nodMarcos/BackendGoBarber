@@ -151,7 +151,7 @@ module.exports = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-    "**/*.spec.ts"
+    "<rootDir>/src/modules/**/services/*.spec.ts"
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
